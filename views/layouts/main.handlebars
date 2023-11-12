@@ -19,17 +19,21 @@
         <!-- Conditionally render login or logout links -->
         <ul class="display-flex  justify-space-between">
           <a href="/" class = "nav_font primary_color">Home</a> 
-          <a href="/profile" class = "nav_font primary_color">Dashboard</a> 
+          <a href="/dashboard" class = "nav_font primary_color">Dashboard</a> 
 
           {{#unless logged_in}}
           <a href="/login" class = "nav_font primary_color">Login</a> 
           {{/unless}}
 
-          <a href="/logout" class = "nav_font primary_color">Logout</a>         
+          <a href="/logout" class = "nav_font primary_color" id="logout">Logout</a>         
         </ul>        
       </nav>
       <h1 >
-        <a href="/" class = "app-title">The Tech Blog</a>
+        {{#if dashboard_in}}        
+          <a href="/dashboard" class = "app-title">Your Dashboard</a>
+        {{else}}
+          <a href="/" class = "app-title">The Tech Blog</a>
+        {{/if}}
       </h1>
     </header>
     <main class="container container-fluid mt-5">
@@ -42,9 +46,9 @@
   </div>
 
   <!-- Render script for logged in users only -->
-  {{#if logged_in}}
+
   <script src="/js/logout.js"></script>
-  {{/if}}
+
 </body>
 
 </html>

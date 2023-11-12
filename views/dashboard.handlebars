@@ -1,0 +1,15 @@
+{{#each BlogPosts as |post| }}
+<div class="form-group">
+    <a href="/editpost/{{post.id}}">
+        <button class="btn-dashboard">
+            <div class = "inside-dashboard-btn">
+                <div id = "blog-title">{{post.title}}</div>
+                <div>{{format_date date_created}}</div>
+            </div>
+        </button>
+    </a>
+</div>
+
+{{/each}}
+
+<script src="./js/dashboard.js"></script>
