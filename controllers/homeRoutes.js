@@ -56,6 +56,30 @@ router.get('/blogpost/:id', async (req, res) => {
 });
 
 
+router.get('/commentpost/:id', async (req, res) => {
+  try {
+    const blogpostData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const blogpost = blogpostData.get({ plain: true });
+
+    res.render('commentpost', {
+      ...blogpost,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
 router.get('/editpost/:id', async (req, res) => {
   try {
     const blogpostData = await BlogPost.findByPk(req.params.id, {
@@ -101,6 +125,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 
+
+router.get('/newpost', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+
+  res.render('newpost');
+});
+
+
+
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -134,6 +168,8 @@ router.get('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
+
+  res.render('logout');
 });
 
 

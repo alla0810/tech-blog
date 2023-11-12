@@ -154,6 +154,37 @@ p {
   padding: 1%;
 }
 
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  align-items: center;
+}
+
+.btn-new-post {
+  font-size: 1.5rem;    
+  text-decoration:none;
+  padding: 6px 5px;
+  width: 20%;
+  display: block;
+
+  margin: 10px 0;
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: var(--dark);
+/*  box-shadow: 3px 3px var(--dark);*/
+  transform: translate(-1px, -1px);
+  margin-top: auto;
+}  
+
+.btn-new-post:hover {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  transform: translate(0, 0);
+/*  box-shadow: 2px 2px var(--dark);*/
+}
 
 .hero {
   padding: 1.5% 4%;
@@ -226,7 +257,15 @@ p {
 
 .card-body {
   padding: 1.0%;
+  color: var(--dark);  
 }
+
+.card-body:hover {
+  padding: 1.0%;
+  color: var(--dark);
+
+}
+
 
 .font-title {
   font-size: 1.2rem;
