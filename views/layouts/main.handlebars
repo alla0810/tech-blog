@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" href="/css/jass.css"> 
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="flex-column min-100-vh">
+    <header class="hero">
+      <nav class="col-6">
+        <!-- Conditionally render login or logout links -->
+        <ul class="display-flex  justify-space-between">
+          <a href="/" class = "nav_font primary_color">Home</a> 
+          <a href="/profile" class = "nav_font primary_color">Dashboard</a> 
+
+          {{#unless logged_in}}
+          <a href="/login" class = "nav_font primary_color">Login</a> 
+          {{/unless}}
+
+          <a href="/logout" class = "nav_font primary_color">Logout</a>         
+        </ul>        
+      </nav>
+      <h1 >
+        <a href="/" class = "app-title">The Tech Blog</a>
+      </h1>
+    </header>
+    <main class="container container-fluid mt-5">
+      <!-- Render the sub layout -->
+      {{{ body }}}
+    </main>
+    <footer>
+      
+    </footer>
+  </div>
+
+  <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
