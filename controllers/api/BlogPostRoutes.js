@@ -9,6 +9,9 @@ router.post('/', withAuth, async (req, res) => {
       user_id: req.session.user_id,
     });
 
+    console.log("555555555555555555555555555555555555555");
+
+
     res.status(200).json(newBlogPost);
   } catch (err) {
     res.status(400).json(err);
@@ -17,16 +20,28 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const updatedBlogPost = await BlogPost.update({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
+    const updatedBlogPost = await BlogPost.update(
+      {
+        title: req.body.title,
+        description: req.body.description,
+//        user_id: req.session.user_id,
+      },
+      {
+        where: {
+          id: req.params.id,
+        }
+      }
+    );
+
+    console.log("555555555555555555555555555555555555555");
+
 
     res.status(200).json(updatedBlogPost);
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
 
 
 
@@ -39,7 +54,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!BlogPostData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+      res.status(404).json({ message: 'No BlogPost found with this id!' });
       return;
     }
 

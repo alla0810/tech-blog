@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { BlogPost, User } = require('../models');
+const { BlogPost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
-
+const userId_to_name = require('../utils/helpers');
 
 
 router.get('/', async (req, res) => {
@@ -78,6 +78,54 @@ router.get('/commentpost/:id', async (req, res) => {
   }
 });
 
+
+router.get('/commentshow/:id', async (req, res) => {
+  try {
+    const blogpostData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const blogpost = blogpostData.get({ plain: true });
+
+    const allCommentData = await Comment.findAll(
+      {where: {blogpost_id: req.params.id}}
+    );
+    const allComments = allCommentData.map((post) => post.get({ plain: true }));
+
+    console.log(allComments);    
+
+    let CommentList = [];
+
+    for (let i=0; i<allComments.length; i++)      
+    {
+      let user_id = allComments[i].user_id;
+      console.log(user_id);
+      let UserData = await User.findByPk(user_id);
+      let user = UserData.get({plain: true});
+
+      console.log(user.name);
+
+      CommentList[i] = {
+        "user" : user.name,
+        "description" : allComments[i].description,
+        "date_created" : allComments[i].date_created
+      }
+    }
+
+    res.render('commentshow', {
+      ...blogpost,
+      CommentList,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 router.get('/editpost/:id', async (req, res) => {

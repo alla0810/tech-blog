@@ -12,6 +12,7 @@ const UpdatePostHandler = async (event) => {
 
   console.log("title: ", title);
   console.log("description: ", description);
+  console.log("id: ", id);
 
   if (title && description) {
     // Send a PUT request to the API endpoint

@@ -1,4 +1,15 @@
+const { User} = require('../models');
+
 module.exports = {
+  userId_to_name: async (id) => {
+
+    const UserData = await User.findByPk(id);
+    const user = UserData.get({plain: true});
+
+    console.log(user.name);
+
+    return user.name;
+  },
   format_date: (date) => {
     // Format date as MM/DD/YYYY
     return date.toLocaleDateString();

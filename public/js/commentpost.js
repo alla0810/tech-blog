@@ -1,18 +1,21 @@
-const loginFormHandler = async (event) => {
+var CommentBtn = document.getElementById("Submit-Btn");
+
+
+const CommentBtnHandler = async (event) => {
   event.preventDefault();
 
-  // Collect values from the login form
-  const user = document.querySelector('#user-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const comment = document.querySelector('#Blog-Comment').value.trim();
+  const blogpost_id = event.target.getAttribute('data-id');
 
-  console.log("user: ", user);
-  console.log("password: ", password);
 
-  if (user && password) {
-    // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
+  console.log("comment: ", comment);
+  console.log("blogpost_id: ", blogpost_id);
+
+  if (comment && blogpost_id) {
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/comments/`, {
       method: 'POST',
-      body: JSON.stringify({ user, password }),
+      body: JSON.stringify({ blogpost_id, comment }),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -20,7 +23,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      document.location.replace('/dashboard');
+      document.location.replace(`/commentshow/${blogpost_id}`);
     } else {
       alert(response.statusText);
     }
@@ -28,7 +31,5 @@ const loginFormHandler = async (event) => {
 };
 
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
 
+CommentBtn.addEventListener('click', CommentBtnHandler);

@@ -11,21 +11,17 @@
 
 <br>
 
+{{#each CommentList as |comment| }}
 <div class="col-md-12">
     <div class="card" >
       <h4 class = "card-header"> &nbsp </h4>
 
-      <form class="form login-form">
-        <div class="form-group">
-          <label for="password-login">Comment</label>
-          <textarea class="form-input" id="Blog-Comment" rows="4"> </textarea>
-        </div>
-        <div class="form-group">
-          <button class="btn" type="submit" data-id="{{id}}" id = "Submit-Btn">Submit</button>
-        </div>
-      </form>
+      <p class = "card-body">{{comment.description}}</p>    
+      <p class = "card-body">--{{comment.user}}, {{format_date comment.date_created}}</p>    
+
     </div>
   </div>
 
+<br>
 
-<script src="../js/commentpost.js"></script>
+{{/each}}
