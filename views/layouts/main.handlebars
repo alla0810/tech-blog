@@ -22,10 +22,11 @@
           <a href="/dashboard" class = "nav_font primary_color">Dashboard</a> 
 
           {{#unless logged_in}}
-          <a href="/login" class = "nav_font primary_color">Login</a> 
+            <a href="/login" class = "nav_font primary_color">Login</a> 
+          {{else}}
+            <a href="/logout" class = "nav_font primary_color" id="logout">Logout</a>         
           {{/unless}}
 
-          <a href="/logout" class = "nav_font primary_color" id="logout">Logout</a>         
         </ul>        
       </nav>
       <h1 >

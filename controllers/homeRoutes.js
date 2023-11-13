@@ -216,8 +216,8 @@ router.get('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
-
   res.render('logout');
+
 });
 
 
