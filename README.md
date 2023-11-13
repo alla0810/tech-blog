@@ -2,7 +2,6 @@
   * Author: Kyosook Shin
   * Author's Email: kyosook.shin@gmail.com  
   * GitHub: https://github.com/alla0810/tech-blog
-  * Walkthrough Video: https://drive.google.com/file/d/1N0QrQbP3RqnyN9QxMiiXK89BWkpQlmIG/view
   
   * screenshot  
 
@@ -11,6 +10,17 @@
 <img src='./images/screen3.png' width="800">  
 <img src='./images/screen4.png' width="800">  
 <img src='./images/screen5.png' width="800">  
+
+
+## Usage
+* After downloading, you can run this program on your local machine by following the procedure below:
+1. Get into your mysql account by running `mysql -u <username> -p`, and insert your mysql password after prompting.
+2. On another terminal, run `source <source code path>\db\schema.sql` to initialize database.
+3. Inside the same terminal, run `npm run seed` for seeding the database table.
+4. At the same terminal, run `nodemon server.js` to run the backend server for tech-blog.
+5. On an internet browser, type in the URL `localhost:3001`.
+6. You're ready to go!
+
 
 ## Source Code References
   This project has used some reference codes from the following sites
